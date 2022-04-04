@@ -9,7 +9,7 @@
   * Status: Draft
   * First Published at: https://wiki.php.net/rfc/mysqli_execute_query
   * GitHub Repo: https://github.com/craigfrancis/php-mysqli-execute-query-rfc
-  * Implementation: ?
+  * Implementation: [[https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query|From Kamil Tekiela]]
 
 ===== Introduction =====
 
@@ -84,7 +84,7 @@ The name was inspired by [[https://www.doctrine-project.org/projects/doctrine-db
 
 ==== Returning false ====
 
-Because the implementation is effectively calling //[[https://www.php.net/mysqli_stmt_get_result|mysqli_stmt_get_result()]]// last, while it will return //false// on failure, it will also return //false// for queries that do not produce a result set (e.g. //UPDATE//). Historically this has been addressed by using //mysqli_errno()//, but since 8.1 the [[https://wiki.php.net/rfc/mysqli_default_errmode|Change Default mysqli Error Mode RFC]] so Exceptions are used by default.
+Because the implementation is effectively calling [[https://www.php.net/mysqli_stmt_get_result|mysqli_stmt_get_result()]] last, while it will return //false// on failure, it will also return //false// for queries that do not produce a result set (e.g. //UPDATE//). Historically this has been addressed by using //mysqli_errno()//, but since 8.1 the [[https://wiki.php.net/rfc/mysqli_default_errmode|Change Default mysqli Error Mode RFC]] was accepted, and Exceptions are used by default.
 
 ==== Re-using Statements ====
 
@@ -138,13 +138,18 @@ Currently //$mysqli->affected_rows// and //mysqli_affected_rows($mysqli)// retur
 
 ==== Properties ====
 
-Because //mysqli_stmt// is not returned, it's not possible to use its properties: //affected_rows//, //insert_id//, //errno//, //sqlstate//, etc.
+Because [[https://www.php.net/manual/en/class.mysqli-stmt.php|mysqli_stmt]] is not returned, it's not possible to use its properties:
 
-//num_rows// and //field_count// are already available on the returned //mysqli_result//.
-
-//insert_id//, you can use //$mysqli->insert_id// or //mysqli_insert_id($mysqli)//.
-
-Errors, which are now handled by exceptions (by default), can also be retrieved via //mysqli_errno($mysqli)//, //$mysqli->errno//, etc.
+  - int|string **$affected_rows**
+  - int|string **$insert_id** - can use //$mysqli->insert_id// or //mysqli_insert_id($mysqli)//
+  - int|string **$num_rows** - also available on //mysqli_result//
+  - int **$param_count**
+  - int **$field_count** - also available on //mysqli_result//
+  - int **$errno** - can use //mysqli_errno($mysqli)//, //$mysqli->errno//
+  - string **$error** - can use //mysqli_error($mysqli)//, //$mysqli->error//
+  - array **$error_list** - can use //mysqli_error_list($mysqli)//, //$mysqli->error_list//
+  - string **$sqlstate** - can use //mysqli_sqlstate($mysqli)//, //$mysqli->sqlstate//
+  - int **$id**
 
 ===== Unaffected PHP Functionality =====
 
@@ -162,7 +167,7 @@ TODO
 
 ===== Implementation =====
 
-[[https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query|Patch from Kamil Tekiela]]
+[[https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query|From Kamil Tekiela]]
 
 ===== References =====
 

@@ -138,13 +138,18 @@ Currently `$mysqli->affected_rows` and `mysqli_affected_rows($mysqli)` returns -
 
 ### Properties
 
-Because `mysqli_stmt` is not returned, it's not possible to use its properties: `affected_rows`, `insert_id`, `errno`, `sqlstate`, etc.
+Because [mysqli_stmt](https://www.php.net/manual/en/class.mysqli-stmt.php) is not returned, it's not possible to use its properties:
 
-`num_rows` and `field_count` are already available on the returned `mysqli_result`.
-
-`insert_id`, you can use `$mysqli->insert_id` or `mysqli_insert_id($mysqli)`.
-
-Errors, which are now handled by exceptions (by default), can also be retrieved via `mysqli_errno($mysqli)`, `$mysqli->errno`, etc.
+- int|string **$affected_rows**
+- int|string **$insert_id** - can use `$mysqli->insert_id` or `mysqli_insert_id($mysqli)`
+- int|string **$num_rows** - also available on `mysqli_result`
+- int **$param_count**
+- int **$field_count** - also available on `mysqli_result`
+- int **$errno** - can use `mysqli_errno($mysqli)`, `$mysqli->errno`
+- string **$error** - can use `mysqli_error($mysqli)`, `$mysqli->error`
+- array **$error_list** - can use `mysqli_error_list($mysqli)`, `$mysqli->error_list`
+- string **$sqlstate** - can use `mysqli_sqlstate($mysqli)`, `$mysqli->sqlstate`
+- int **$id**
 
 ## Unaffected PHP Functionality
 
