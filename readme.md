@@ -9,7 +9,7 @@
 * Status: Draft
 * First Published at: https://wiki.php.net/rfc/mysqli_execute_query
 * GitHub Repo: https://github.com/craigfrancis/php-mysqli-execute-query-rfc
-* Implementation: ?
+* Implementation: [From Kamil Tekiela](https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query)
 
 ## Introduction
 
@@ -84,7 +84,7 @@ The name was inspired by [Doctrine\DBAL\Connection::executeQuery()](https://www.
 
 ### Returning false
 
-Because the implementation is effectively calling `[mysqli_stmt_get_result()](https://www.php.net/mysqli_stmt_get_result)` last, while it will return `false` on failure, it will also return `false` for queries that do not produce a result set (e.g. `UPDATE`). Historically this has been addressed by using `mysqli_errno()`, but since 8.1 the [Change Default mysqli Error Mode RFC](https://wiki.php.net/rfc/mysqli_default_errmode) so Exceptions are used by default.
+Because the implementation is effectively calling [mysqli_stmt_get_result()](https://www.php.net/mysqli_stmt_get_result) last, while it will return `false` on failure, it will also return `false` for queries that do not produce a result set (e.g. `UPDATE`). Historically this has been addressed by using `mysqli_errno()`, but since 8.1 the [Change Default mysqli Error Mode RFC](https://wiki.php.net/rfc/mysqli_default_errmode) so Exceptions are used by default.
 
 ### Re-using Statements
 
@@ -162,7 +162,7 @@ TODO
 
 ## Implementation
 
-[Patch from Kamil Tekiela](https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query)
+[From Kamil Tekiela](https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query)
 
 ## References
 
