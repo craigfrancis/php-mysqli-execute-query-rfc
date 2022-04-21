@@ -3,10 +3,10 @@
   * Version: 0.1
   * Voting Start: ?
   * Voting End: ?
-  * RFC Started: 2022-04-04
-  * RFC Updated: 2022-04-04
+  * RFC Started: 2022-04-21
+  * RFC Updated: 2022-04-21
   * Author: Kamil Tekiela, and Craig Francis [craig#at#craigfrancis.co.uk]
-  * Status: Draft
+  * Status: Under Discussion
   * First Published at: https://wiki.php.net/rfc/mysqli_execute_query
   * GitHub Repo: https://github.com/craigfrancis/php-mysqli-execute-query-rfc
   * Implementation: [[https://github.com/php/php-src/compare/master...kamil-tekiela:execute_query|From Kamil Tekiela]] (proof of concept)
